@@ -1061,11 +1061,33 @@ function drawCard(inRange, qrEl) {
   // 底色先鋪白色，讓上下背景圖之間、以及圖片本身的留白處都能無縫接合
   ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,W,H);
 
-  if (_bgTopImg) {
+  if (_bgTopImg && _bgBottomImg) {
+    const topScale = W / _bgTopImg.naturalWidth;
+    const botScale = W / _bgBottomImg.naturalWidth;
+    const topFullH = _bgTopImg.naturalHeight * topScale;
+    const botFullH = _bgBottomImg.naturalHeight * botScale;
+
+    // 行程少、卡片矮時，上下背景圖高度相加可能超過卡片總高，導致互相覆蓋、
+    // 甚至把另一張的裝飾（太陽、文字）整個蓋掉。這裡依可用高度等比例縮減兩者，
+    // 並且各自從「該保留裝飾的那一側」裁切，確保兩張圖不會重疊。
+    let topDrawH = topFullH, botDrawH = botFullH;
+    if (topDrawH + botDrawH > H) {
+      const shrink = H / (topDrawH + botDrawH);
+      topDrawH *= shrink; botDrawH *= shrink;
+    }
+
+    // 上方背景圖：裝飾在圖片上緣，裁切時保留頂部
+    const srcTopH = topDrawH / topScale;
+    ctx.drawImage(_bgTopImg, 0, 0, _bgTopImg.naturalWidth, srcTopH, 0, 0, W, topDrawH);
+
+    // 下方背景圖：裝飾在圖片下緣，裁切時保留底部
+    const srcBotH = botDrawH / botScale;
+    const srcBotY = _bgBottomImg.naturalHeight - srcBotH;
+    ctx.drawImage(_bgBottomImg, 0, srcBotY, _bgBottomImg.naturalWidth, srcBotH, 0, H - botDrawH, W, botDrawH);
+  } else if (_bgTopImg) {
     const topH = _bgTopImg.naturalHeight * (W / _bgTopImg.naturalWidth);
     ctx.drawImage(_bgTopImg, 0, 0, W, topH);
-  }
-  if (_bgBottomImg) {
+  } else if (_bgBottomImg) {
     const botH = _bgBottomImg.naturalHeight * (W / _bgBottomImg.naturalWidth);
     ctx.drawImage(_bgBottomImg, 0, H - botH, W, botH);
   }
