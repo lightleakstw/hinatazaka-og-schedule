@@ -1111,9 +1111,6 @@ function drawCard(inRange, qrEl) {
   if (sub !== subtitleText) sub += '…';
   ctx.fillText(sub, PAD, Y0+72);
 
-  ctx.strokeStyle = '#c0dcea'; ctx.lineWidth = 1.2;
-  ctx.beginPath(); ctx.moveTo(PAD, Y0+86); ctx.lineTo(W-PAD, Y0+86); ctx.stroke();
-
   let lastDate = '';
   let rowY = Y0 + HEADER_H;
   inRange.forEach((e, i) => {
