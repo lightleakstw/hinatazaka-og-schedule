@@ -1,1 +1,1 @@
-# hinatazaka-og-schedule
+# hnz-og-cal

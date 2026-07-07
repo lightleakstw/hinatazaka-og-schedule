@@ -1,485 +1,428 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PXRS0L15SP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PXRS0L15SP');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>日向坂OG行程</title>
+
+<link rel="icon" href="https://cdn.hinatazaka46.com/files/14/diary/official/member/poka_0419_2_fhw9fh9ewhfhee0wh90ehw0fewhw8e0he0.png" type="image/png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="apple-touch-icon" href="https://cdn.hinatazaka46.com/files/14/diary/official/member/poka_0419_2_fhw9fh9ewhfhee0wh90ehw0fewhw8e0he0.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#dff0f7">
+
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- QR Code 工具改為按「輸出圖卡」時才動態載入，加快首次開頁速度 -->
+
 <style>
-  :root {
-    --shiho: #0202a3;
-    --shiho-light: #e8e8ff;
-    --kumi: #800080;
-    --kumi-light: #f5e5f5;
-    --miho: #6fbfd9;
-    --miho-light: #e8f6fb;
-    --sky: #e8f4f8;
-    --sky-mid: #c5e3ef;
-    --white: #ffffff;
-    --text: #1a2a3a;
-    --text-soft: #5a7a8a;
-    --border: #d0e8f0;
-    --shadow: 0 2px 12px rgba(111,191,217,0.15);
-    --radius: 12px;
-  }
+:root {
+  --shiho: #0234b3;
+  --shiho-light: #e8eaf6;
+  --kumi: #800080;
+  --kumi-light: #f5e5f5;
+  --miho: #6fbfd9;
+  --miho-light: #e8f6fb;
+  --miho-text: #1a7a9a;
+  --kyoko: #000000;
+  --kyoko-light: #f0f2f5;
+  --mipan: #f1c40f;
+  --mipan-light: #fefde8;
+  --mipan-text: #7a6000;
+  --nibu: #f39c12;
+  --nibu-light: #fdf0dc;
+  --nibu-text: #8a5400;
+  --sky-bg: #dff0f7;
+  --sky-mid: #b8dcea;
+  --white: #ffffff;
+  --text: #1a2a3a;
+  --text-soft: #5a7a8a;
+  --border: #cce8f0;
+  --radius: 14px;
+  --radius-sm: 8px;
+}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans JP', sans-serif; background: #dff0f7; min-height: 100vh; color: var(--text); }
 
-  body {
-    font-family: 'Noto Sans JP', sans-serif;
-    background: linear-gradient(160deg, #e8f4f8 0%, #f0f8ff 50%, #e8eeff 100%);
-    min-height: 100vh;
-    color: var(--text);
-  }
+header {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
+  border-bottom: 1px solid var(--sky-mid);
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 20px rgba(111,191,217,0.25);
+}
+.header-inner { max-width: 860px; margin: 0 auto; padding: 18px 20px 14px; }
+.header-top { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.header-icon {
+  width: 42px; height: 42px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(111,191,217,0.3); border: 2px solid var(--sky-mid);
+}
+.header-icon img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.site-title { font-family: 'Noto Serif JP', serif; font-size: 20px; font-weight: 700; color: var(--text); letter-spacing: 0.04em; line-height: 1.2; }
+.site-subtitle { font-size: 10px; font-weight: 300; color: var(--text-soft); letter-spacing: 0.18em; margin-top: 2px; }
 
-  /* Header */
-  header {
-    background: var(--white);
-    border-bottom: 2px solid var(--sky-mid);
-    padding: 20px 24px 16px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 16px rgba(111,191,217,0.2);
-  }
+.tabs-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.tabs-label { font-size: 10px; color: var(--text-soft); letter-spacing: 0.1em; margin-right: 2px; }
+.tab {
+  padding: 7px 18px; border-radius: 20px; border: 1.5px solid var(--border);
+  font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.18s;
+  background: transparent; color: var(--text-soft); font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.04em;
+}
+.tab:hover { background: var(--white); }
+.tab[data-member="all"].active { background: var(--text); color: #fff; border-color: var(--text); }
+.tab[data-member="SHIHO"].active { background: var(--shiho); color: #fff; border-color: var(--shiho); }
+.tab[data-member="KUMI"].active  { background: var(--kumi);  color: #fff; border-color: var(--kumi);  }
+.tab[data-member="MIHO"].active  { background: var(--miho);  color: #fff; border-color: var(--miho);  }
+.tab[data-member="KYOKO"].active { background: var(--kyoko); color: #fff; border-color: var(--kyoko); }
+.tab[data-member="MIPAN"].active { background: var(--mipan); color: #333; border-color: var(--mipan); }
+.tab[data-member="NIBU"].active  { background: var(--nibu);  color: #fff; border-color: var(--nibu);  }
+.tab-check { display: none; font-size: 10px; margin-right: 3px; }
+.tab.active .tab-check { display: inline; }
 
-  .header-inner {
-    max-width: 900px;
-    margin: 0 auto;
-  }
+main { max-width: 860px; margin: 0 auto; padding: 28px 16px 80px; }
+.section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: var(--text-soft);
+  text-transform: uppercase; margin: 32px 0 14px; padding-left: 2px;
+  display: flex; align-items: center; gap: 8px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--sky-mid); }
 
-  .site-title {
-    font-family: 'Noto Serif JP', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--text);
-    letter-spacing: 0.05em;
-    margin-bottom: 14px;
-  }
+.date-group { margin-bottom: 24px; }
+.date-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; padding-left: 2px; flex-wrap: wrap; }
+.date-main { font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: 0.03em; }
+.date-today-badge {
+  font-size: 10px; background: var(--miho); color: white; padding: 2px 10px;
+  border-radius: 10px; font-weight: 700; letter-spacing: 0.05em;
+}
 
-  .site-title span {
-    font-size: 13px;
-    font-weight: 300;
-    color: var(--text-soft);
-    margin-left: 10px;
-    letter-spacing: 0.1em;
-  }
+.event-card {
+  background: var(--white); border-radius: var(--radius); margin-bottom: 10px;
+  box-shadow: 0 1px 8px rgba(111,191,217,0.12), 0 0 0 1px rgba(111,191,217,0.08);
+  overflow: hidden; transition: transform 0.15s, box-shadow 0.15s; display: flex;
+}
+.event-card:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(111,191,217,0.2); }
+.event-stripe { width: 4px; flex-shrink: 0; }
+.event-card[data-member="SHIHO"] .event-stripe { background: var(--shiho); }
+.event-card[data-member="KUMI"]  .event-stripe { background: var(--kumi); }
+.event-card[data-member="MIHO"]  .event-stripe { background: var(--miho); }
+.event-card[data-member="KYOKO"] .event-stripe { background: var(--kyoko); }
+.event-card[data-member="MIPAN"] .event-stripe { background: var(--mipan); }
+.event-card[data-member="NIBU"]  .event-stripe { background: var(--nibu); }
+.event-inner { padding: 14px 16px; flex: 1; min-width: 0; }
+.event-meta { display: flex; align-items: center; gap: 7px; margin-bottom: 6px; flex-wrap: wrap; }
+.event-member-chip { font-size: 10px; font-weight: 700; padding: 2px 9px; border-radius: 10px; letter-spacing: 0.05em; }
+.event-card[data-member="SHIHO"] .event-member-chip { background: var(--shiho-light); color: var(--shiho); }
+.event-card[data-member="KUMI"]  .event-member-chip { background: var(--kumi-light);  color: var(--kumi);  }
+.event-card[data-member="MIHO"]  .event-member-chip { background: var(--miho-light);  color: var(--miho-text); }
+.event-card[data-member="KYOKO"] .event-member-chip { background: var(--kyoko-light); color: var(--kyoko); }
+.event-card[data-member="MIPAN"] .event-member-chip { background: var(--mipan-light); color: var(--mipan-text); }
+.event-card[data-member="NIBU"]  .event-member-chip { background: var(--nibu-light);  color: var(--nibu-text); }
+.event-category { font-size: 10px; padding: 2px 9px; border-radius: 10px; background: #f0f4f8; color: var(--text-soft); font-weight: 500; }
+.event-time { font-size: 11px; color: var(--text-soft); font-weight: 600; margin-left: auto; }
+.event-title { font-size: 15px; font-weight: 600; line-height: 1.55; color: var(--text); margin-bottom: 5px; }
+.event-note  { font-size: 12px; color: var(--text-soft); margin-bottom: 5px; line-height: 1.5; }
+.event-link  { font-size: 11px; color: var(--miho-text); text-decoration: none; word-break: break-all; opacity: 0.8; display: block; }
+.event-link:hover { opacity: 1; text-decoration: underline; }
 
-  /* Member tabs */
-  .tabs {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
+.panel { background: var(--white); border-radius: var(--radius); padding: 22px 24px; box-shadow: 0 1px 8px rgba(111,191,217,0.12); margin-top: 28px; }
+.panel-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 16px; letter-spacing: 0.06em; }
 
-  .tab {
-    padding: 6px 16px;
-    border-radius: 20px;
-    border: 2px solid transparent;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    background: var(--sky);
-    color: var(--text-soft);
-    letter-spacing: 0.05em;
-  }
+.sub-list { display: flex; flex-direction: column; gap: 12px; }
+.sub-item { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+/* 🎯 模擬兩支手燈的全新樣式 */
+.sub-color-bar { 
+  display: flex; 
+  gap: 3px;          /* 兩支手燈中間的間距 */
+  flex-shrink: 0; 
+  width: 25px;       /* 稍微縮窄整體寬度 */
+  height: 18px; 
+}
 
-  .tab:hover { opacity: 0.8; }
+.sub-color-bar span { 
+  flex: 1; 
+  display: block; 
+  border-radius: 0;  /* 移除圓角，變成直角手燈感 */
+  /* 給每支手燈淡淡的陰影外框，即使是白色（齊藤京子）也能清晰看見每支的輪廓 */
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15); 
+}
+.sub-name { font-size: 13px; width: 96px; flex-shrink: 0; font-weight: 500; }
+.sub-btn { font-size: 11px; padding: 5px 20px; border-radius: 12px; text-decoration: none; font-weight: 500; border: 1.5px solid; transition: opacity 0.15s; white-space: nowrap; }
+.sub-btn:hover { opacity: 0.7; }
 
-  .tab.active[data-member="all"] {
-    background: var(--text);
-    color: var(--white);
-    border-color: var(--text);
-  }
+.form-panel-box {
+  background: linear-gradient(135deg, #f0f7ff 0%, #e8f3ff 100%);
+  border: 1px dashed #a3c7f5; border-radius: var(--radius-sm); padding: 16px;
+  display: flex; justify-content: space-between; align-items: center; gap: 14px;
+}
+.form-panel-text { font-size: 13px; line-height: 1.5; color: #2a4a73; }
+.form-panel-btn {
+  background: #0234b3; color: white; border: none; font-size: 12px; font-weight: 600;
+  padding: 8px 18px; border-radius: 20px; cursor: pointer; text-decoration: none;
+  transition: opacity 0.15s; white-space: nowrap;
+}
+.form-panel-btn:hover { opacity: 0.9; }
 
-  .tab.active[data-member="SHIHO"] {
-    background: var(--shiho);
-    color: var(--white);
-    border-color: var(--shiho);
-  }
+.output-controls { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; align-items: center; }
+.output-filter { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border); align-items: center; }
+.output-filter-label { font-size: 11px; color: var(--text-soft); margin-right: 4px; }
+.out-member-btn {
+  padding: 5px 14px; border-radius: 16px; border: 1.5px solid var(--border);
+  font-size: 11px; font-weight: 500; cursor: pointer; background: transparent; color: var(--text-soft);
+  font-family: 'Noto Sans JP', sans-serif; transition: all 0.15s;
+}
+.out-member-btn[data-member="all"].active  { background: var(--text); color: #fff; border-color: var(--text); }
+.out-member-btn[data-member="SHIHO"].active { background: var(--shiho); color: #fff; border-color: var(--shiho); }
+.out-member-btn[data-member="KUMI"].active  { background: var(--kumi);  color: #fff; border-color: var(--kumi);  }
+.out-member-btn[data-member="MIHO"].active  { background: var(--miho);  color: #fff; border-color: var(--miho);  }
+.out-member-btn[data-member="KYOKO"].active { background: var(--kyoko); color: #fff; border-color: var(--kyoko); }
+.out-member-btn[data-member="MIPAN"].active { background: var(--mipan); color: #333; border-color: var(--mipan); }
+.out-member-btn[data-member="NIBU"].active  { background: var(--nibu);  color: #fff; border-color: var(--nibu);  }
 
-  .tab.active[data-member="KUMI"] {
-    background: var(--kumi);
-    color: var(--white);
-    border-color: var(--kumi);
-  }
+.range-select {
+  padding: 8px 14px; border-radius: 20px; border: 1.5px solid var(--border);
+  font-family: 'Noto Sans JP', sans-serif; font-size: 12px; background: #f4fafd; color: var(--text);
+  cursor: pointer; outline: none;
+}
+.out-btn {
+  padding: 8px 18px; border-radius: 20px; border: none; font-size: 12px; font-weight: 600;
+  cursor: pointer; font-family: 'Noto Sans JP', sans-serif; transition: opacity 0.15s; letter-spacing: 0.04em;
+}
+.out-btn:hover { opacity: 0.8; }
+.out-btn-text { background: var(--text); color: white; }
+.out-btn-card { background: linear-gradient(135deg, var(--miho), #0234b3); color: white; }
 
-  .tab.active[data-member="MIHO"] {
-    background: var(--miho);
-    color: var(--white);
-    border-color: var(--miho);
-  }
+.output-result {
+  background: #f4fafd; border-radius: var(--radius-sm); padding: 16px; font-size: 13px;
+  line-height: 1.9; white-space: pre-wrap; display: none; position: relative;
+  border: 1px solid var(--border); margin-top: 4px;
+}
+.copy-btn {
+  position: absolute; top: 10px; right: 10px; padding: 4px 12px; background: var(--white);
+  border: 1px solid var(--border); border-radius: 8px; font-size: 11px; cursor: pointer;
+}
+.copy-btn:hover { background: var(--sky-bg); }
 
-  /* Main */
-  main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 24px 16px 60px;
-  }
+#card-overlay {
+  display: none; position: fixed; inset: 0; background: rgba(10,20,40,0.7); z-index: 200;
+  align-items: center; justify-content: center; padding: 20px;
+}
+#card-overlay.show { display: flex; }
+.card-modal {
+  background: white; border-radius: 16px; padding: 24px; max-width: 440px; width: 100%;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto;
+}
+.card-modal-title { font-size: 14px; font-weight: 700; margin-bottom: 16px; color: var(--text); }
+#schedule-canvas { width: 100%; border-radius: 10px; display: block; margin-bottom: 14px; }
+.card-actions { display: flex; gap: 10px; }
+.card-dl-btn {
+  flex: 1; padding: 10px; border-radius: 10px; border: none; background: var(--text);
+  color: white; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Noto Sans JP', sans-serif;
+}
+.card-close-btn {
+  padding: 10px 18px; border-radius: 10px; border: 1.5px solid var(--border); background: transparent;
+  font-size: 13px; cursor: pointer; color: var(--text-soft);
+}
 
-  /* Section title */
-  .section-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    color: var(--text-soft);
-    text-transform: uppercase;
-    margin: 28px 0 12px;
-    padding-left: 4px;
-  }
+.fab-container { position: fixed; right: 24px; bottom: 24px; z-index: 150; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+.fab-menu {
+  background: var(--white); border-radius: var(--radius); padding: 8px 0;
+  box-shadow: 0 4px 24px rgba(10,30,60,0.15), 0 0 0 1px rgba(111,191,217,0.1);
+  display: flex; flex-direction: column; min-width: 140px;
+  transform: translateY(15px) scale(0.9); opacity: 0; pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fab-container.open .fab-menu { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
+.fab-item {
+  padding: 11px 20px; font-size: 13px; font-weight: 500; color: var(--text);
+  background: transparent; border: none; cursor: pointer; text-align: left;
+  display: flex; align-items: center; gap: 8px; transition: background 0.15s;
+}
+.fab-item:hover { background: var(--miho-light); color: var(--miho-text); }
+.fab-main-btn {
+  width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--miho), #0234b3);
+  border: none; cursor: pointer; box-shadow: 0 4px 16px rgba(2,52,179,0.3);
+  display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 22px;
+}
+.fab-icon { position: relative; width: 20px; height: 14px; }
+.fab-icon span { position: absolute; left: 0; width: 100%; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.2s; }
+.fab-icon span:nth-child(1) { top: 0; }
+.fab-icon span:nth-child(2) { top: 6px; }
+.fab-icon span:nth-child(3) { top: 12px; }
+.fab-container.open .fab-icon span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.fab-container.open .fab-icon span:nth-child(2) { opacity: 0; }
+.fab-container.open .fab-icon span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-  /* Date group */
-  .date-group {
-    margin-bottom: 20px;
-  }
+.tab-others {
+  padding: 7px 18px; border-radius: 20px; border: 1.5px solid var(--text-soft);
+  font-size: 12px; font-weight: 500; cursor: pointer; transition: all 0.18s;
+  background: transparent; color: var(--text-soft); font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.04em;
+}
+.tab-others:hover { background: var(--white); }
 
-  .date-header {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    margin-bottom: 8px;
-    padding: 0 4px;
-  }
+.others-overlay { display: none; position: fixed; inset: 0; background: rgba(10,20,40,0.6); z-index: 300; align-items: center; justify-content: center; padding: 20px; }
+.others-overlay.show { display: flex; }
+.others-modal { background: var(--white); border-radius: 16px; width: 100%; max-width: 400px; box-shadow: 0 8px 40px rgba(0,0,0,0.25); overflow: hidden; max-height: 90vh; overflow-y: auto; }
+.others-rainbow { height: 6px; background: linear-gradient(to right,#ffb3d1,#ffcc80,#fff176,#a5d6a7,#6fbfd9,#0234b3,#800080); }
+.others-body { padding: 20px 22px; }
+.others-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.others-title { font-size: 15px; font-weight: 700; color: var(--text); }
+.others-close { width: 28px; height: 28px; border-radius: 50%; border: none; background: #f0f4f8; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--text-soft); transition: background 0.15s; }
+.others-close:hover { background: var(--sky-mid); }
+.others-desc { font-size: 12px; color: var(--text-soft); line-height: 1.7; margin-bottom: 18px; }
+.others-gen { margin-bottom: 14px; }
+.others-gen-title { display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+.others-gen-label { font-size: 10px; font-weight: 700; color: var(--text-soft); letter-spacing: 0.12em; }
+.others-gen-line { flex: 1; height: 1px; background: var(--border); }
+.others-member-row { display: flex; align-items: center; gap: 10px; padding: 6px 4px; border-radius: 8px; transition: background 0.12s; }
+.others-member-row:hover { background: var(--sky-bg); }
+.others-color-bar { display: flex; border-radius: 4px; overflow: hidden; flex-shrink: 0; width: 24px; height: 16px; box-shadow: 0 0 0 0.5px rgba(0,0,0,0.12); }
+.others-color-bar span { flex: 1; display: block; }
+.others-member-name { font-size: 13px; color: var(--text); flex: 1; }
+.others-link {
+  font-size: 11px; color: var(--miho-text); text-decoration: none; border: 1px solid var(--sky-mid);
+  border-radius: 8px; padding: 3px 10px; white-space: nowrap; transition: background 0.12s;
+}
+.others-link:hover { background: var(--miho-light); }
+.others-footer { border-top: 1px solid var(--border); padding-top: 12px; font-size: 12px; color: var(--text-soft); line-height: 1.7; margin-top: 4px; }
+.others-ig { color: var(--miho-text); text-decoration: none; font-weight: 500; }
+.others-ig:hover { text-decoration: underline; }
 
-  .date-main {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text);
-  }
+.day-block {
+  background: var(--white); border-radius: var(--radius);
+  box-shadow: 0 1px 8px rgba(111,191,217,0.12), 0 0 0 1px rgba(111,191,217,0.08);
+  overflow: hidden; margin-bottom: 10px;
+}
+.day-block .event-card { border-radius: 0; box-shadow: none; margin-bottom: 0; }
+.day-divider { height: 1px; background: var(--border); margin-left: 4px; }
 
-  .date-weekday {
-    font-size: 12px;
-    color: var(--text-soft);
-    font-weight: 400;
-  }
+.anniversary-badge {
+  font-size: 11px; background: #fff8e1; color: #b8860b; padding: 2px 10px;
+  border-radius: 10px; font-weight: 500; border: 0.5px solid #f0d060; white-space: nowrap;
+}
+.anniversary-card { display: flex; overflow: hidden; }
+.anniversary-stripe { width: 4px; background: #87CEEB; flex-shrink: 0; }
+.anniversary-inner { padding: 12px 16px; flex: 1; background: #eef8fd; }
+.anniversary-label { font-size: 10px; color: #4a8aaa; font-weight: 500; margin-bottom: 3px; }
+.anniversary-title { font-size: 14px; font-weight: 600; color: #1a4a6a; }
 
-  .date-today {
-    font-size: 11px;
-    background: var(--miho);
-    color: white;
-    padding: 2px 8px;
-    border-radius: 10px;
-    font-weight: 500;
-  }
+.birthday-badge {
+  font-size: 11px; background: #fff0f5; color: #c2185b; padding: 2px 10px;
+  border-radius: 10px; font-weight: 500; border: 0.5px solid #f5b8d0; white-space: nowrap;
+}
+.birthday-card { display: flex; overflow: hidden; }
+.birthday-stripe { width: 4px; background: #ff8fab; flex-shrink: 0; }
+.birthday-inner { padding: 12px 16px; flex: 1; background: #fff0f5; }
+.birthday-label { font-size: 10px; color: #c2185b; font-weight: 500; margin-bottom: 3px; }
+.birthday-title { font-size: 14px; font-weight: 600; color: #99154f; }
 
-  /* Event card */
-  .event-card {
-    background: var(--white);
-    border-radius: var(--radius);
-    padding: 14px 16px;
-    margin-bottom: 8px;
-    box-shadow: var(--shadow);
-    border-left: 4px solid transparent;
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    transition: transform 0.15s;
-  }
+.footer-countdown {
+  font-family: 'Noto Serif JP', serif; font-size: 13px; color: var(--text-soft);
+  letter-spacing: 0.08em; display: flex; align-items: baseline; gap: 4px; justify-content: center;
+}
+.footer-countdown-days { font-size: 26px; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
 
-  .event-card:hover { transform: translateX(2px); }
+/* 載入骨架屏：資料到達前先顯示版面輪廓 */
+.skeleton {
+  background: linear-gradient(90deg, #edf5fa 25%, #f9fdff 50%, #edf5fa 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.skeleton-date { width: 150px; height: 20px; border-radius: 6px; margin: 32px 0 10px; }
+.skeleton-card { height: 88px; border-radius: var(--radius); margin-bottom: 10px; box-shadow: 0 1px 8px rgba(111,191,217,0.12); }
 
-  .event-card[data-member="SHIHO"] { border-left-color: var(--shiho); }
-  .event-card[data-member="KUMI"] { border-left-color: var(--kumi); }
-  .event-card[data-member="MIHO"] { border-left-color: var(--miho); }
-
-  .event-member-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-top: 5px;
-    flex-shrink: 0;
-  }
-
-  [data-member="SHIHO"] .event-member-dot { background: var(--shiho); }
-  [data-member="KUMI"] .event-member-dot { background: var(--kumi); }
-  [data-member="MIHO"] .event-member-dot { background: var(--miho); }
-
-  .event-body { flex: 1; min-width: 0; }
-
-  .event-meta {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    margin-bottom: 4px;
-    flex-wrap: wrap;
-  }
-
-  .event-member-name {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-  }
-
-  [data-member="SHIHO"] .event-member-name { color: var(--shiho); }
-  [data-member="KUMI"] .event-member-name { color: var(--kumi); }
-  [data-member="MIHO"] .event-member-name { color: var(--miho); }
-
-  .event-category {
-    font-size: 10px;
-    padding: 2px 8px;
-    border-radius: 10px;
-    font-weight: 500;
-  }
-
-  [data-member="SHIHO"] .event-category { background: var(--shiho-light); color: var(--shiho); }
-  [data-member="KUMI"] .event-category { background: var(--kumi-light); color: var(--kumi); }
-  [data-member="MIHO"] .event-category { background: var(--miho-light); color: #2a7a9a; }
-
-  .event-time {
-    font-size: 11px;
-    color: var(--text-soft);
-    font-weight: 500;
-  }
-
-  .event-title {
-    font-size: 15px;
-    font-weight: 500;
-    line-height: 1.5;
-    margin-bottom: 4px;
-  }
-
-  .event-note {
-    font-size: 12px;
-    color: var(--text-soft);
-    margin-bottom: 4px;
-  }
-
-  .event-link {
-    font-size: 12px;
-    color: var(--miho);
-    text-decoration: none;
-    word-break: break-all;
-  }
-
-  .event-link:hover { text-decoration: underline; }
-
-  /* No date section */
-  .no-date-section {
-    background: var(--white);
-    border-radius: var(--radius);
-    padding: 16px;
-    box-shadow: var(--shadow);
-    border: 2px dashed var(--border);
-  }
-
-  /* Subscribe section */
-  .subscribe-section {
-    margin-top: 40px;
-    background: var(--white);
-    border-radius: var(--radius);
-    padding: 20px 24px;
-    box-shadow: var(--shadow);
-  }
-
-  .subscribe-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 14px;
-    letter-spacing: 0.05em;
-  }
-
-  .subscribe-links {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .subscribe-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .subscribe-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .subscribe-name {
-    font-size: 13px;
-    color: var(--text);
-    width: 100px;
-    flex-shrink: 0;
-  }
-
-  .subscribe-btn {
-    font-size: 11px;
-    padding: 4px 12px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 500;
-    border: 1.5px solid;
-    transition: all 0.2s;
-  }
-
-  .subscribe-btn:hover { opacity: 0.8; }
-
-  /* Output section */
-  .output-section {
-    margin-top: 24px;
-    background: var(--white);
-    border-radius: var(--radius);
-    padding: 20px 24px;
-    box-shadow: var(--shadow);
-  }
-
-  .output-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 14px;
-  }
-
-  .output-controls {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 14px;
-  }
-
-  .output-btn {
-    padding: 8px 18px;
-    border-radius: 20px;
-    border: none;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    font-family: 'Noto Sans JP', sans-serif;
-    transition: all 0.2s;
-  }
-
-  .output-btn-primary {
-    background: var(--text);
-    color: white;
-  }
-
-  .output-btn-secondary {
-    background: var(--sky);
-    color: var(--text);
-  }
-
-  .output-btn:hover { opacity: 0.8; }
-
-  .output-result {
-    background: var(--sky);
-    border-radius: 8px;
-    padding: 14px;
-    font-size: 13px;
-    line-height: 1.8;
-    white-space: pre-wrap;
-    display: none;
-    position: relative;
-  }
-
-  .copy-btn {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    padding: 4px 12px;
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 11px;
-    cursor: pointer;
-    font-family: 'Noto Sans JP', sans-serif;
-  }
-
-  /* Loading */
-  .loading {
-    text-align: center;
-    padding: 60px 0;
-    color: var(--text-soft);
-    font-size: 14px;
-  }
-
-  .loading-dot {
-    display: inline-block;
-    animation: pulse 1.2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
-  }
-
-  /* Empty */
-  .empty {
-    text-align: center;
-    padding: 40px 0;
-    color: var(--text-soft);
-    font-size: 14px;
-  }
-
-  /* Responsive */
-  @media (max-width: 600px) {
-    .site-title { font-size: 18px; }
-    .event-title { font-size: 14px; }
-    header { padding: 16px 16px 12px; }
-  }
+@media (max-width: 580px) {
+  .site-title { font-size: 17px; }
+  .event-title { font-size: 14px; }
+  .header-inner { padding: 14px 14px 12px; }
+  main { padding: 20px 12px 60px; }
+  .panel { padding: 18px 16px; }
+  .fab-main-btn { width: 50px; height: 50px; font-size: 18px; }
+  .form-panel-box { flex-direction: column; text-align: center; }
+  .form-panel-btn { width: 100%; }
+}
 </style>
 </head>
 <body>
 
 <header>
   <div class="header-inner">
-    <div class="site-title">日向坂OG行程 <span>HINATAZAKA OG SCHEDULE</span></div>
-    <div class="tabs">
-      <button class="tab active" data-member="all">全員</button>
-      <button class="tab" data-member="SHIHO">加藤史帆</button>
-      <button class="tab" data-member="KUMI">佐々木久美</button>
-      <button class="tab" data-member="MIHO">渡邉美穂</button>
+    <div class="header-top">
+      <div class="header-icon">
+        <img src="https://cdn.hinatazaka46.com/files/14/diary/official/member/poka_0419_2_fhw9fh9ewhfhee0wh90ehw0fewhw8e0he0.png" alt="icon">
+      </div>
+      <div>
+        <div class="site-title">日向坂46 OG行程</div>
+        <div class="site-subtitle">HINATAZAKA46 OG SCHEDULE</div>
+      </div>
+    </div>
+    <div class="tabs-row">
+      <span class="tabs-label">顯示：</span>
+      <button class="tab active" data-member="all"><span class="tab-check">✓</span>全員</button>
+      <!-- 成員頁籤由試算表的 MEMBERS 分頁自動產生 -->
+      <button class="tab-others" onclick="openOthers()">其他成員 ↗</button>
     </div>
   </div>
 </header>
 
 <main>
   <div id="schedule-container">
-    <div class="loading">
-      <span class="loading-dot">●</span> 載入行程中...
+    <div class="skeleton skeleton-date"></div>
+    <div class="skeleton skeleton-card"></div>
+    <div class="skeleton skeleton-card"></div>
+    <div class="skeleton skeleton-date"></div>
+    <div class="skeleton skeleton-card"></div>
+  </div>
+
+  <div class="panel" id="panel-subscribe">
+    <div class="panel-title">📅 訂閱日曆</div>
+    <!-- 訂閱清單由試算表的 MEMBERS 分頁自動產生 -->
+    <div class="sub-list" id="sub-list"></div>
+  </div>
+
+  <div class="panel" id="panel-contribute">
+    <div class="panel-title">✍️ 行程情報募集</div>
+    <div class="form-panel-box">
+      <div class="form-panel-text">
+        發現漏掉的 OG 行程了嗎？歡迎幫忙點選右側按鈕填寫投稿問卷！<br>
+        資料將自動歸類至後台，並於<strong>每日凌晨 1-2 點</strong>同步至日曆。
+      </div>
+      <a class="form-panel-btn" href="https://script.google.com/macros/s/AKfycbzLiKxXRM0Ah06vPAW89zK303HfZbBMzSCQfed57nlFXi-DWLVmtB_m1ZAWJJr1GPui4g/exec" target="_blank">📄 前往投稿行程</a>
     </div>
   </div>
 
-  <!-- Subscribe -->
-  <div class="subscribe-section">
-    <div class="subscribe-title">📅 訂閱 Google 日曆</div>
-    <div class="subscribe-links">
-      <div class="subscribe-item">
-        <div class="subscribe-dot" style="background:#0202a3"></div>
-        <div class="subscribe-name">加藤史帆</div>
-        <a class="subscribe-btn" href="https://calendar.google.com/calendar/embed?src=a0bac1c23774a0ca20fa13475a1ffd19106cdcab9f7aa74fe1af7b3a3217ee72%40group.calendar.google.com&ctz=Asia%2FTokyo" target="_blank" style="color:#0202a3;border-color:#0202a3">在 Google 日曆開啟</a>
-        <a class="subscribe-btn" href="https://calendar.google.com/calendar/ical/a0bac1c23774a0ca20fa13475a1ffd19106cdcab9f7aa74fe1af7b3a3217ee72%40group.calendar.google.com/public/basic.ics" style="color:#0202a3;border-color:#0202a3">iCal 訂閱</a>
-      </div>
-      <div class="subscribe-item">
-        <div class="subscribe-dot" style="background:#800080"></div>
-        <div class="subscribe-name">佐々木久美</div>
-        <a class="subscribe-btn" href="https://calendar.google.com/calendar/embed?src=1bb7b20d3c8ff16bc24f43f9ba9e01c99ac6e30440ebc6b11eca7cf5b2f8c18e%40group.calendar.google.com&ctz=Asia%2FTokyo" target="_blank" style="color:#800080;border-color:#800080">在 Google 日曆開啟</a>
-        <a class="subscribe-btn" href="https://calendar.google.com/calendar/ical/1bb7b20d3c8ff16bc24f43f9ba9e01c99ac6e30440ebc6b11eca7cf5b2f8c18e%40group.calendar.google.com/public/basic.ics" style="color:#800080;border-color:#800080">iCal 訂閱</a>
-      </div>
-      <div class="subscribe-item">
-        <div class="subscribe-dot" style="background:#6fbfd9"></div>
-        <div class="subscribe-name">渡邉美穂</div>
-        <a class="subscribe-btn" href="https://calendar.google.com/calendar/embed?src=d03f10c60c7732ebbb2ce66dd9acc0dbe339a40064080421c751f5a6469e3982%40group.calendar.google.com&ctz=Asia%2FTokyo" target="_blank" style="color:#2a7a9a;border-color:#6fbfd9">在 Google 日曆開啟</a>
-        <a class="subscribe-btn" href="https://calendar.google.com/calendar/ical/d03f10c60c7732ebbb2ce66dd9acc0dbe339a40064080421c751f5a6469e3982%40group.calendar.google.com/public/basic.ics" style="color:#2a7a9a;border-color:#6fbfd9">iCal 訂閱</a>
-      </div>
+  <div class="panel" id="panel-output">
+    <div class="panel-title">📋 輸出行程</div>
+    <div class="output-filter" id="output-filter">
+      <span class="output-filter-label">成員：</span>
+      <button class="out-member-btn active" data-member="all">全員</button>
+      <!-- 成員按鈕由試算表的 MEMBERS 分頁自動產生 -->
     </div>
-  </div>
-
-  <!-- Output -->
-  <div class="output-section">
-    <div class="output-title">📋 輸出行程</div>
     <div class="output-controls">
-      <select id="output-range" style="padding:8px 14px;border-radius:20px;border:1.5px solid var(--border);font-family:'Noto Sans JP',sans-serif;font-size:13px;background:var(--sky);color:var(--text);cursor:pointer;">
+      <select class="range-select" id="output-range">
+        <option value="sevenDays">近七天</option>
         <option value="week">本週</option>
         <option value="twoweeks">近兩週</option>
         <option value="month">本月</option>
+        <option value="nextmonth">下月</option>
       </select>
-      <button class="output-btn output-btn-primary" onclick="generateOutput()">輸出文字</button>
+      <button class="out-btn out-btn-text" onclick="generateTextOutput()">輸出文字</button>
+      <button class="out-btn out-btn-card" onclick="generateCardOutput()">輸出圖卡</button>
     </div>
     <div class="output-result" id="output-result">
       <button class="copy-btn" onclick="copyOutput()">複製</button>
@@ -488,254 +431,907 @@
   </div>
 </main>
 
+<div class="fab-container" id="fab-container">
+  <div class="fab-menu">
+    <button class="fab-item" onclick="scrollToPanel('panel-subscribe')">📅 訂閱日曆</button>
+    <a class="fab-item" href="https://script.google.com/macros/s/AKfycbzLiKxXRM0Ah06vPAW89zK303HfZbBMzSCQfed57nlFXi-DWLVmtB_m1ZAWJJr1GPui4g/exec" target="_blank" style="text-decoration: none; color: var(--text);">✍️ 投稿行程</a>
+    <button class="fab-item" onclick="scrollToPanel('panel-output')">📋 輸出行程</button>
+  </div>
+  <button class="fab-main-btn" onclick="toggleFabMenu(event)">
+    <div class="fab-icon"><span></span><span></span><span></span></div>
+  </button>
+</div>
+
+<div id="card-overlay" onclick="closeCard(event)">
+  <div class="card-modal">
+    <div class="card-modal-title">行程圖卡（點下載儲存）</div>
+    <canvas id="schedule-canvas"></canvas>
+    <div class="card-actions">
+      <button class="card-dl-btn" onclick="downloadCard()">⬇ 下載圖卡</button>
+      <button class="card-close-btn" onclick="document.getElementById('card-overlay').classList.remove('show')">關閉</button>
+    </div>
+  </div>
+</div>
+
+<div id="qr-tmp" style="display:none;"></div>
+
 <script>
+const SITE_URL = 'https://hinatazaka46og.github.io/hnz-og-cal/';
+const MINCHO = "'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', 'YuMincho', 'MS Mincho', Georgia, serif";
+
 const SHEET_ID = '1G70fvNSynS6p2YBo_SNsU8w0tnU8SUAp3De21hRYMSQ';
-const SHEETS = ['MIHO', 'KUMI', 'SHIHO'];
+const WEEKDAYS = ['日','一','二','三','四','五','六'];
 
-const MEMBER_INFO = {
-  SHIHO: { name: '加藤史帆', color: '#0202a3', light: '#e8e8ff' },
-  KUMI:  { name: '佐々木久美', color: '#800080', light: '#f5e5f5' },
-  MIHO:  { name: '渡邉美穂', color: '#6fbfd9', light: '#e8f6fb' },
-};
+/* 成員名單改由試算表的 MEMBERS 分頁載入（順序＝顯示順序）。
+   讀不到 MEMBERS 分頁時，退回使用下面這份內建名單，網站照常運作。 */
+const DEFAULT_MEMBERS = [
+  { code:'SHIHO', name:'加藤史帆',  color:'#0234b3', light:'#e8eaf6', textColor:'#0234b3', pen1:'#0234b3', pen2:'#0234b3', calendar:'https://calendar.google.com/calendar/embed?src=a0bac1c23774a0ca20fa13475a1ffd19106cdcab9f7aa74fe1af7b3a3217ee72%40group.calendar.google.com&ctz=Asia%2FTokyo' },
+  { code:'KUMI',  name:'佐々木久美', color:'#800080', light:'#f5e5f5', textColor:'#800080', pen1:'#800080', pen2:'#b0d0e8', calendar:'https://calendar.google.com/calendar/embed?src=1bb7b20d3c8ff16bc24f43f9ba9e01c99ac6e30440ebc6b11eca7cf5b2f8c18e%40group.calendar.google.com&ctz=Asia%2FTokyo' },
+  { code:'KYOKO', name:'齊藤京子',  color:'#000000', light:'#f0f2f5', textColor:'#000000', pen1:'#ffffff', pen2:'#ffffff', calendar:'https://calendar.google.com/calendar/embed?src=ecb6f0c79530e20fb6bacaec5b6bdd8cc90a13628540ccd4e6a3b0a0f8f4da83%40group.calendar.google.com&ctz=Asia%2FTokyo' },
+  { code:'MIPAN', name:'佐々木美玲', color:'#f1c40f', light:'#fefde8', textColor:'#7a6000', pen1:'#f1c40f', pen2:'#f1c40f', calendar:'https://calendar.google.com/calendar/embed?src=b5e9566a35c892328f752d6d2a91006ad4f2ad9893daec535caadedec2a44fe2%40group.calendar.google.com&ctz=Asia%2FTokyo' },
+  { code:'MIHO',  name:'渡邉美穂',  color:'#6fbfd9', light:'#e8f6fb', textColor:'#1a7a9a', pen1:'#ffffff', pen2:'#b0d0e8', calendar:'https://calendar.google.com/calendar/embed?src=d03f10c60c7732ebbb2ce66dd9acc0dbe339a40064080421c751f5a6469e3982%40group.calendar.google.com&ctz=Asia%2FTokyo' },
+  { code:'NIBU',  name:'丹生明里',  color:'#f39c12', light:'#fdf0dc', textColor:'#8a5400', pen1:'#f39c12', pen2:'#f39c12', calendar:'https://calendar.google.com/calendar/embed?src=af5205b015269d9bdee7e1ad5c13c038faefeace26ad4574e8143554bda2a9da%40group.calendar.google.com&ctz=Asia%2FTokyo' },
+];
 
-const WEEKDAYS = ['日', '一', '二', '三', '四', '五', '六'];
+let SHEETS = [];
+
+/* 安全處理：試算表資料來自開放投稿，顯示前一律當純文字處理，防止惡意內容被當成程式執行 */
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+}
+/* 連結只接受 http/https 開頭的正常網址 */
+function safeUrl(u) {
+  const s = String(u ?? '').trim();
+  return /^https?:\/\//i.test(s) ? s : '';
+}
+
+let MEMBER_INFO = {}; // 由 applyMembers() 依 MEMBERS 分頁內容填入
+
+/* 讀取 MEMBERS 分頁；失敗或空白時退回內建名單 */
+async function fetchMembers() {
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&headers=1&sheet=MEMBERS`;
+  try {
+    const res = await fetch(url);
+    const text = await res.text();
+    const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1]);
+    if (!json.table || !json.table.rows) return DEFAULT_MEMBERS;
+    const cols = json.table.cols.map(c => c.label);
+    const list = json.table.rows.map(row => {
+      const obj = {};
+      cols.forEach((col, i) => { const cell = row.c[i]; obj[col] = cell ? (cell.v !== null ? String(cell.v).trim() : '') : ''; });
+      return obj;
+    }).filter(r => r.code && r.name);
+    if (list.length === 0) return DEFAULT_MEMBERS;
+    return list.map(r => ({
+      code: r.code.toUpperCase(),
+      name: r.name,
+      color: r.color || '#5a7a8a',
+      light: r.light || '#f0f4f8',
+      textColor: r.textColor || r.color || '#5a7a8a',
+      pen1: r.pen1 || r.color || '#5a7a8a',
+      pen2: r.pen2 || r.pen1 || r.color || '#5a7a8a',
+      calendar: r.calendar || ''
+    }));
+  } catch (e) { return DEFAULT_MEMBERS; }
+}
+
+/* 判斷顏色深淺，決定按鈕選中時文字用深色還是白色 */
+function isLightColor(hex) {
+  const s = String(hex).replace('#', '');
+  if (s.length < 6) return false;
+  const r = parseInt(s.slice(0, 2), 16), g = parseInt(s.slice(2, 4), 16), b = parseInt(s.slice(4, 6), 16);
+  return (0.299 * r + 0.587 * g + 0.114 * b) > 186;
+}
+
+/* 依成員名單動態產生：頁籤、輸出按鈕、訂閱清單、按鈕選中配色 */
+function applyMembers(list) {
+  SHEETS = list.map(m => m.code);
+  MEMBER_INFO = {};
+  list.forEach(m => { MEMBER_INFO[m.code] = { name: m.name, color: m.color, light: m.light, textColor: m.textColor }; });
+
+  const css = list.map(m => {
+    const txt = isLightColor(m.color) ? '#333' : '#fff';
+    return `.tab[data-member="${m.code}"].active,.out-member-btn[data-member="${m.code}"].active{background:${m.color};color:${txt};border-color:${m.color};}`;
+  }).join('\n');
+  const styleEl = document.createElement('style');
+  styleEl.textContent = css;
+  document.head.appendChild(styleEl);
+
+  const othersBtn = document.querySelector('.tab-others');
+  list.forEach(m => {
+    const b = document.createElement('button');
+    b.className = 'tab';
+    b.dataset.member = m.code;
+    b.innerHTML = '<span class="tab-check">✓</span>' + esc(m.name);
+    othersBtn.parentNode.insertBefore(b, othersBtn);
+  });
+
+  const outFilter = document.getElementById('output-filter');
+  list.forEach(m => {
+    const b = document.createElement('button');
+    b.className = 'out-member-btn';
+    b.dataset.member = m.code;
+    b.textContent = m.name;
+    outFilter.appendChild(b);
+  });
+
+  document.getElementById('sub-list').innerHTML = list.filter(m => m.calendar).map(m => `
+    <div class="sub-item">
+      <div class="sub-color-bar"><span style="background:${esc(m.pen1)}"></span><span style="background:${esc(m.pen2)}"></span></div>
+      <div class="sub-name">${esc(m.name)}</div>
+      <a class="sub-btn" href="${esc(m.calendar)}" target="_blank" rel="noopener" style="color:${esc(m.textColor)};border-color:${esc(m.color)}">查看 / 訂閱日曆</a>
+    </div>`).join('');
+
+  setupViewTabs();
+  setupOutButtons();
+}
 
 let allEvents = [];
-let currentFilter = 'all';
+let viewSelected = new Set(['all']);
+let outSelected = new Set(['all']);
+
+function toggleFabMenu(e) { e.stopPropagation(); document.getElementById('fab-container').classList.toggle('open'); }
+function scrollToPanel(id) {
+  document.getElementById('fab-container').classList.remove('open');
+  const el = document.getElementById(id);
+  const headerH = document.querySelector('header').offsetHeight;
+  const top = el.getBoundingClientRect().top + window.scrollY - headerH - 12;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+document.addEventListener('click', () => { document.getElementById('fab-container').classList.remove('open'); });
+
+let anniversaryData = [];
+let birthdayData = [];
+
+async function fetchAnniversary() {
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&headers=1&sheet=ANNIVERSARY`;
+  try {
+    const res = await fetch(url);
+    const text = await res.text();
+    const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1]);
+    if (!json.table || !json.table.rows) return [];
+    const cols = json.table.cols.map(c => c.label);
+    return json.table.rows.map(row => {
+      const obj = {};
+      cols.forEach((col, i) => { const cell = row.c[i]; obj[col] = cell ? (cell.v !== null ? cell.v : '') : ''; });
+      return obj;
+    }).filter(r => r.name);
+  } catch(e) { return []; }
+}
+
+async function fetchBirthday() {
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&headers=1&sheet=BIRTHDAY`;
+  try {
+    const res = await fetch(url);
+    const text = await res.text();
+    const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1]);
+    if (!json.table || !json.table.rows) return [];
+    const cols = json.table.cols.map(c => c.label);
+    return json.table.rows.map(row => {
+      const obj = {};
+      cols.forEach((col, i) => { const cell = row.c[i]; obj[col] = cell ? (cell.v !== null ? cell.v : '') : ''; });
+      return obj;
+    }).filter(r => r.name);
+  } catch(e) { return []; }
+}
+
+function getTodayAnniversaries(date) {
+  const m = date.getMonth() + 1;
+  const d = date.getDate();
+  const y = date.getFullYear();
+  return anniversaryData.filter(a => Number(a.month) === m && Number(a.day) === d).map(a => {
+    const years = a.start_year ? (y - Number(a.start_year)) : null;
+    return { name: a.name, years };
+  });
+}
+
+function getTodayBirthdays(date) {
+  const m = date.getMonth() + 1;
+  const d = date.getDate();
+  const y = date.getFullYear();
+  return birthdayData.filter(b => Number(b.month) === m && Number(b.day) === d).map(b => {
+    const age = b.birth_year ? (y - Number(b.birth_year)) : null;
+    return { name: b.name, age };
+  });
+}
+
+function renderAnniversaryBadges(anniversaries) {
+  return anniversaries.map(a => {
+    const label = a.years ? `${esc(a.name)} ${a.years}周年` : esc(a.name);
+    return `<span class="anniversary-badge">${label}</span>`;
+  }).join('');
+}
+
+function renderBirthdayBadges(birthdays) {
+  return birthdays.map(b => {
+    const label = b.age ? `${esc(b.name)} ${b.age}歲生日` : `${esc(b.name)} 生日`;
+    return `<span class="birthday-badge">🎂 ${label}</span>`;
+  }).join('');
+}
+
+function renderAnniversaryCards(anniversaries) {
+  return anniversaries.map(a => {
+    const label = a.years ? `${esc(a.name)} ${a.years}周年` : esc(a.name);
+    return `<div class="anniversary-card">
+      <div class="anniversary-stripe"></div>
+      <div class="anniversary-inner">
+        <div class="anniversary-label">🎉 日向坂46 記念日</div>
+        <div class="anniversary-title">${label}</div>
+      </div>
+    </div>`;
+  }).join('<div class="day-divider"></div>');
+}
+
+function renderBirthdayCards(birthdays) {
+  return birthdays.map(b => {
+    const label = b.age ? `${esc(b.name)} ${b.age}歲生日` : `${esc(b.name)} 生日`;
+    return `<div class="birthday-card">
+      <div class="birthday-stripe"></div>
+      <div class="birthday-inner">
+        <div class="birthday-label">🎂 生日快樂</div>
+        <div class="birthday-title">${label}</div>
+      </div>
+    </div>`;
+  }).join('<div class="day-divider"></div>');
+}
 
 async function fetchSheet(sheetName) {
-  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
-  const res = await fetch(url);
-  const text = await res.text();
-  const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1]);
-  const rows = json.table.rows;
-  const cols = json.table.cols.map(c => c.label);
-
-  return rows.map(row => {
-    const obj = {};
-    cols.forEach((col, i) => {
-      const cell = row.c[i];
-      obj[col] = cell ? (cell.v !== null ? cell.v : '') : '';
-    });
-    obj._member = sheetName;
-    return obj;
-  }).filter(r => r.title);
+  const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&headers=1&sheet=${sheetName}`;
+  try {
+    const res = await fetch(url); const text = await res.text();
+    const json = JSON.parse(text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)/)[1]);
+    if (!json.table || !json.table.rows) return [];
+    const cols = json.table.cols.map(c => c.label);
+    return json.table.rows.map(row => {
+      const obj = {};
+      cols.forEach((col, i) => { const cell = row.c[i]; obj[col] = cell ? (cell.v !== null ? cell.v : '') : ''; });
+      obj._member = sheetName; return obj;
+    }).filter(r => r.title);
+  } catch(e) { return []; }
 }
 
 function parseDate(val) {
   if (!val) return null;
-  if (typeof val === 'string' && val.match(/^\d{4}-\d{2}-\d{2}$/)) {
-    return new Date(val + 'T00:00:00');
-  }
-  // Google Sheets Date format: Date(year,month,day)
+  if (typeof val === 'string' && val.match(/^\d{4}-\d{2}-\d{2}$/)) return new Date(val+'T00:00:00');
   if (typeof val === 'string' && val.startsWith('Date(')) {
-    const parts = val.replace('Date(','').replace(')','').split(',').map(Number);
-    return new Date(parts[0], parts[1], parts[2]);
+    const p = val.replace('Date(','').replace(')','').split(',').map(Number);
+    return new Date(p[0], p[1], p[2]);
   }
   return null;
 }
-
 function formatDate(d) {
-  const m = d.getMonth() + 1;
-  const day = d.getDate();
-  const wd = WEEKDAYS[d.getDay()];
-  return `${m}/${day}（${wd}）`;
+  const currentYear = new Date().getFullYear();
+  const yearStr = d.getFullYear() !== currentYear ? `${d.getFullYear()}/` : '';
+  return `${yearStr}${d.getMonth()+1}/${d.getDate()}（${WEEKDAYS[d.getDay()]}）`;
+}
+function formatTime(val) { if (!val) return ''; const s = String(val).trim(); return s.includes(':') ? s : ''; }
+function isToday(d) { const n = new Date(); return d.getFullYear()===n.getFullYear() && d.getMonth()===n.getMonth() && d.getDate()===n.getDate(); }
+function getViewFiltered() { if (viewSelected.has('all')) return allEvents; return allEvents.filter(e => viewSelected.has(e._member)); }
+
+function setupViewTabs() {
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const m = tab.dataset.member;
+      if (m === 'all') { viewSelected = new Set(['all']); } else {
+        viewSelected.delete('all'); if (viewSelected.has(m)) { viewSelected.delete(m); if (viewSelected.size === 0) viewSelected = new Set(['all']); } else { viewSelected.add(m); }
+      }
+      document.querySelectorAll('.tab').forEach(t => { const tm = t.dataset.member; t.classList.toggle('active', tm === 'all' ? viewSelected.has('all') : viewSelected.has(tm)); });
+      renderSchedule();
+    });
+  });
 }
 
-function formatTime(val) {
-  if (!val) return '';
-  const str = String(val).trim();
-  if (str.includes(':')) return str;
-  return '';
+function setupOutButtons() {
+  document.querySelectorAll('.out-member-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const m = btn.dataset.member;
+      if (m === 'all') { outSelected = new Set(['all']); } else {
+        outSelected.delete('all'); if (outSelected.has(m)) { outSelected.delete(m); if (outSelected.size === 0) outSelected = new Set(['all']); } else { outSelected.add(m); }
+      }
+      document.querySelectorAll('.out-member-btn').forEach(b => { const bm = b.dataset.member; b.classList.toggle('active', bm === 'all' ? outSelected.has('all') : outSelected.has(bm)); });
+      document.getElementById('output-result').style.display = 'none';
+    });
+  });
 }
 
-function isToday(d) {
-  const now = new Date();
-  return d.getFullYear() === now.getFullYear() &&
-         d.getMonth() === now.getMonth() &&
-         d.getDate() === now.getDate();
+function mergeCoAppearances(events) {
+  const merged = [];
+  const used = new Set();
+  events.forEach((e, i) => {
+    if (used.has(i)) return;
+    const siblings = events.reduce((acc, e2, j) => {
+      if (j !== i && !used.has(j) &&
+          e2._date && e._date &&
+          e2._date.toDateString() === e._date.toDateString() &&
+          e2.title === e.title &&
+          (e2.time || '') === (e.time || '')) {
+        acc.push(j);
+      }
+      return acc;
+    }, []);
+    if (siblings.length > 0) {
+      const members = [e._member, ...siblings.map(j => events[j]._member)];
+      merged.push({ ...e, _members: members });
+      siblings.forEach(j => used.add(j));
+    } else {
+      merged.push({ ...e, _members: [e._member] });
+    }
+    used.add(i);
+  });
+  return merged;
 }
 
 function renderSchedule() {
   const container = document.getElementById('schedule-container');
-  const filtered = currentFilter === 'all'
-    ? allEvents
-    : allEvents.filter(e => e._member === currentFilter);
-
-  const withDate = filtered.filter(e => e._date);
+  const filtered = getViewFiltered();
+  const multiMember = viewSelected.has('all') || viewSelected.size > 1;
+  const withDate = filtered.filter(e => e._date).sort((a,b) => a._date-b._date || (a.time||'').localeCompare(b.time||''));
   const noDate = filtered.filter(e => !e._date);
+  const cutoff = new Date(); cutoff.setDate(cutoff.getDate()-3); cutoff.setHours(0,0,0,0);
+  const future = mergeCoAppearances(withDate.filter(e => e._date >= cutoff));
 
-  // Sort by date then time
-  withDate.sort((a, b) => {
-    if (a._date - b._date !== 0) return a._date - b._date;
-    return (a.time || '').localeCompare(b.time || '');
-  });
-
-  // Group by date
   const groups = {};
-  withDate.forEach(e => {
-    const key = e._date.toDateString();
-    if (!groups[key]) groups[key] = { date: e._date, events: [] };
-    groups[key].events.push(e);
+  future.forEach(e => {
+    const k = e._date.toDateString();
+    if (!groups[k]) groups[k] = { date: e._date, events: [] };
+    groups[k].events.push(e);
   });
 
-  // Only show from today onwards, but keep past if within last 3 days
-  const now = new Date();
-  const cutoff = new Date(now);
-  cutoff.setDate(cutoff.getDate() - 3);
-
-  const futureGroups = Object.values(groups).filter(g => g.date >= cutoff);
-
-  let html = '';
-
-  if (futureGroups.length === 0 && noDate.length === 0) {
-    html = '<div class="empty">暫無行程資料</div>';
+  const showSpecial = viewSelected.has('all');
+  if (showSpecial) {
+    const now = new Date(); now.setHours(0,0,0,0);
+    const lookAhead = new Date(now); lookAhead.setDate(now.getDate() + 30);
+    for (let d = new Date(now); d <= lookAhead; d.setDate(d.getDate()+1)) {
+      const anniversaries = getTodayAnniversaries(d);
+      const birthdays = getTodayBirthdays(d);
+      if (anniversaries.length > 0 || birthdays.length > 0) {
+        const k = d.toDateString();
+        if (!groups[k]) groups[k] = { date: new Date(d), events: [], specialOnly: true, anniversaries, birthdays };
+        else { groups[k].anniversaries = anniversaries; groups[k].birthdays = birthdays; }
+      }
+    }
   }
 
-  if (futureGroups.length > 0) {
+  const sortedGroups = Object.values(groups).sort((a,b) => a.date - b.date);
+
+  let html = '';
+  if (sortedGroups.length === 0 && noDate.length === 0) html = '<div class="empty">暫無行程資料</div>';
+
+  if (sortedGroups.length > 0) {
     html += '<div class="section-label">近期行程</div>';
-    futureGroups.forEach(group => {
-      const todayBadge = isToday(group.date) ? '<span class="date-today">今天</span>' : '';
-      html += `<div class="date-group">
-        <div class="date-header">
-          <span class="date-main">${formatDate(group.date)}</span>
-          ${todayBadge}
-        </div>`;
-      group.events.forEach(e => {
-        html += renderCard(e);
-      });
-      html += '</div>';
+    sortedGroups.forEach(group => {
+      const anniversaries = showSpecial ? getTodayAnniversaries(group.date) : [];
+      const birthdays = showSpecial ? getTodayBirthdays(group.date) : [];
+      const todayBadge = isToday(group.date) ? '<span class="date-today-badge">TODAY</span>' : '';
+      const annBadges = anniversaries.length > 0 ? renderAnniversaryBadges(anniversaries) : '';
+      const bdayBadges = birthdays.length > 0 ? renderBirthdayBadges(birthdays) : '';
+
+      html += `<div class="date-group"><div class="date-header"><span class="date-main">${formatDate(group.date)}</span>${todayBadge}${annBadges}${bdayBadges}</div>`;
+      html += '<div class="day-block">';
+
+      if (group.specialOnly) {
+        const cards = [];
+        if (group.anniversaries && group.anniversaries.length) cards.push(renderAnniversaryCards(group.anniversaries));
+        if (group.birthdays && group.birthdays.length) cards.push(renderBirthdayCards(group.birthdays));
+        html += cards.join('<div class="day-divider"></div>');
+      } else {
+        group.events.forEach((e, idx) => {
+          if (idx > 0) html += '<div class="day-divider"></div>';
+          html += renderCard(e, multiMember);
+        });
+      }
+
+      html += '</div></div>';
     });
   }
 
   if (noDate.length > 0) {
-    html += '<div class="section-label">日期未定</div>';
-    html += '<div class="no-date-section">';
-    noDate.forEach(e => {
-      html += renderCard(e);
+    const noDateMerged = mergeCoAppearances(noDate);
+    html += '<div class="section-label">日期未定</div><div class="no-date-section day-block">';
+    noDateMerged.forEach((e, idx) => {
+      if (idx > 0) html += '<div class="day-divider"></div>';
+      html += renderCard(e, multiMember);
     });
     html += '</div>';
   }
-
   container.innerHTML = html;
 }
 
-function renderCard(e) {
-  const info = MEMBER_INFO[e._member];
+function renderCard(e, showMember) {
   const timeStr = formatTime(e.time);
-  const memberName = currentFilter === 'all' ? `
-    <span class="event-member-name">${info.name}</span>` : '';
+  const members = e._members || [e._member];
+  const isSingle = members.length === 1;
 
-  return `<div class="event-card" data-member="${e._member}">
-    <div class="event-member-dot"></div>
-    <div class="event-body">
+  let stripeStyle;
+  if (isSingle) {
+    stripeStyle = `background:${MEMBER_INFO[members[0]].color}`;
+  } else {
+    const colors = members.map(m => MEMBER_INFO[m].color);
+    const pct = 100 / colors.length;
+    const stops = colors.map((c, i) => `${c} ${i*pct}%, ${c} ${(i+1)*pct}%`).join(', ');
+    stripeStyle = `background:linear-gradient(to bottom,${stops})`;
+  }
+
+  let chipHtml = '';
+  if (showMember) {
+    chipHtml = members.map(m => {
+      const info = MEMBER_INFO[m];
+      const kyokoStyle = m === 'KYOKO'
+        ? `style="background:${info.light};color:${info.color};border:1.5px solid ${info.color}"`
+        : `style="background:${info.light};color:${info.color}"`;
+      return `<span class="event-member-chip" ${kyokoStyle}>${info.name}</span>`;
+    }).join('');
+  }
+
+  const linkUrl = safeUrl(e.url);
+  return `<div class="event-card" data-member="${members[0]}">
+    <div class="event-stripe" style="${stripeStyle}"></div>
+    <div class="event-inner">
       <div class="event-meta">
-        ${memberName}
-        ${e.category ? `<span class="event-category">${e.category}</span>` : ''}
-        ${timeStr ? `<span class="event-time">⏰ ${timeStr}</span>` : ''}
+        ${chipHtml}
+        ${e.category ? `<span class="event-category">${esc(e.category)}</span>` : ''}
+        ${timeStr ? `<span class="event-time">⏰ ${esc(timeStr)}</span>` : ''}
       </div>
-      <div class="event-title">${e.title}</div>
-      ${e.note ? `<div class="event-note">📝 ${e.note}</div>` : ''}
-      ${e.url ? `<a class="event-link" href="${e.url}" target="_blank">🔗 ${e.url}</a>` : ''}
+      <div class="event-title">${esc(e.title)}</div>
+      ${e.note ? `<div class="event-note">📝 ${esc(e.note)}</div>` : ''}
+      ${linkUrl ? `<a class="event-link" href="${esc(linkUrl)}" target="_blank" rel="noopener">🔗 ${esc(linkUrl)}</a>` : ''}
     </div>
   </div>`;
 }
 
-function generateOutput() {
+function getOutFiltered() { if (outSelected.has('all')) return allEvents; return allEvents.filter(e => outSelected.has(e._member)); }
+
+function getOutLabel() {
+  if (outSelected.has('all')) return SHEETS.map(c => MEMBER_INFO[c].name).join('・');
+  return [...outSelected].map(m => MEMBER_INFO[m]?.name || m).join('・');
+}
+
+function getCpTitle(actualMembers) {
+  const members = actualMembers || [...outSelected];
+  const set = new Set(members);
+  const count = set.size;
+
+  if (count === 1) {
+    const m = [...set][0];
+    return `${MEMBER_INFO[m]?.name || m}行程`;
+  }
+  if (count === 2) {
+    if (set.has('SHIHO') && set.has('KUMI'))  return '🦒🧸きくとし行程';
+    if (set.has('SHIHO') && set.has('KYOKO')) return '🧸🍜としきょん行程';
+    if (set.has('SHIHO') && set.has('MIHO'))  return '🧸🏀としみほ行程';
+  }
+  return '日向坂OG行程';
+}
+
+function getRangeEvents() {
   const range = document.getElementById('output-range').value;
   const now = new Date();
+  const today = new Date(now); today.setHours(0,0,0,0);
   let start, end;
 
-  if (range === 'week') {
-    const day = now.getDay();
-    start = new Date(now); start.setDate(now.getDate() - day); start.setHours(0,0,0,0);
-    end = new Date(start); end.setDate(start.getDate() + 6); end.setHours(23,59,59,999);
+  if (range === 'sevenDays') {
+    start = new Date(today);
+    end = new Date(today); end.setDate(today.getDate()+6); end.setHours(23,59,59,999);
+  } else if (range === 'week') {
+    start = new Date(now); start.setDate(now.getDate()-now.getDay()); start.setHours(0,0,0,0);
+    end = new Date(start); end.setDate(start.getDate()+6); end.setHours(23,59,59,999);
   } else if (range === 'twoweeks') {
-    start = new Date(now); start.setHours(0,0,0,0);
-    end = new Date(now); end.setDate(now.getDate() + 13); end.setHours(23,59,59,999);
-  } else {
+    start = new Date(today);
+    end = new Date(today); end.setDate(today.getDate()+13); end.setHours(23,59,59,999);
+  } else if (range === 'month') {
     start = new Date(now.getFullYear(), now.getMonth(), 1);
-    end = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
+    end = new Date(now.getFullYear(), now.getMonth()+1, 0, 23,59,59);
+  } else {
+    start = new Date(now.getFullYear(), now.getMonth()+1, 1);
+    end = new Date(now.getFullYear(), now.getMonth()+2, 0, 23,59,59);
   }
 
-  const filtered = currentFilter === 'all'
-    ? allEvents
-    : allEvents.filter(e => e._member === currentFilter);
+  const filterFrom = (range === 'sevenDays' || range === 'twoweeks') ? today : start;
+  return getOutFiltered()
+    .filter(e => e._date && e._date >= filterFrom && e._date >= start && e._date <= end)
+    .sort((a,b) => a._date-b._date || (a.time||'').localeCompare(b.time||''));
+}
 
-  const inRange = filtered
-    .filter(e => e._date && e._date >= start && e._date <= end)
-    .sort((a, b) => a._date - b._date || (a.time || '').localeCompare(b.time || ''));
+function openOthers() {
+  document.getElementById('others-overlay').classList.add('show');
+}
 
-  if (inRange.length === 0) {
-    document.getElementById('output-text').textContent = '此期間暫無行程';
-    document.getElementById('output-result').style.display = 'block';
-    return;
+function closeOthers(e) {
+  if (e.target === document.getElementById('others-overlay')) {
+    document.getElementById('others-overlay').classList.remove('show');
   }
+}
 
-  const rangeLabel = range === 'week' ? '本週' : range === 'twoweeks' ? '近兩週' : '本月';
-  let text = `📅 ${rangeLabel}日向坂OG行程\n`;
-  text += '─'.repeat(20) + '\n';
+function getRangeLabel() { 
+  return { 
+    sevenDays: '近七天',
+    week: '本週', 
+    twoweeks: '近兩週', 
+    month: '本月', 
+    nextmonth: '下月' 
+  }[document.getElementById('output-range').value]; 
+}
 
+function generateTextOutput() {
+  const inRange = getRangeEvents();
+  const rangeLabel = getRangeLabel();
+
+  if (inRange.length === 0) { document.getElementById('output-text').textContent = '此期間暫無行程'; document.getElementById('output-result').style.display = 'block'; return; }
+
+  const actualMembers = [...new Set(inRange.map(e => e._member))];
+  const cpTitle = getCpTitle(actualMembers);
+  const isSingle = actualMembers.length === 1;
+
+  let text = `📅 ${rangeLabel}${cpTitle}\n${'─'.repeat(22)}\n`;
   let lastDate = '';
   inRange.forEach(e => {
-    const dateStr = formatDate(e._date);
-    if (dateStr !== lastDate) {
-      text += `\n▸ ${dateStr}\n`;
-      lastDate = dateStr;
-    }
-    const info = MEMBER_INFO[e._member];
-    const timeStr = formatTime(e.time);
-    text += `  【${info.name}】`;
-    if (e.category) text += `[${e.category}] `;
-    if (timeStr) text += `${timeStr} `;
-    text += `${e.title}`;
-    if (e.note) text += `（${e.note}）`;
-    text += '\n';
-    if (e.url) text += `  ${e.url}\n`;
+    const ds = formatDate(e._date); if (ds !== lastDate) { text += `\n▸ ${ds}\n`; lastDate = ds; }
+    const t = formatTime(e.time);
+    text += !isSingle ? `  【${MEMBER_INFO[e._member].name}】` : '  ';
+    if (e.category) text += `[${e.category}] `; if (t) text += `${t} `; text += e.title; if (e.note) text += `（${e.note}）`; text += '\n'; if (e.url) text += `  ${e.url}\n`;
   });
-
-  text += '\n' + '─'.repeat(20);
-
+  text += `\n${'─'.repeat(22)}`;
   document.getElementById('output-text').textContent = text;
   document.getElementById('output-result').style.display = 'block';
 }
 
-function copyOutput() {
-  const text = document.getElementById('output-text').textContent;
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = document.querySelector('.copy-btn');
-    btn.textContent = '已複製！';
-    setTimeout(() => btn.textContent = '複製', 2000);
-  });
+function copyOutput() { const text = document.getElementById('output-text').textContent; navigator.clipboard.writeText(text).then(() => { const btn = document.querySelector('.copy-btn'); btn.textContent = '已複製 ✓'; setTimeout(() => btn.textContent = '複製', 2000); }); }
+
+let qrImageEl = null;
+let qrLibPromise = null;
+
+function loadQRLib() {
+  if (window.QRCode) return Promise.resolve();
+  if (!qrLibPromise) {
+    qrLibPromise = new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+      s.onload = resolve;
+      s.onerror = () => { qrLibPromise = null; reject(new Error('QR lib load failed')); };
+      document.head.appendChild(s);
+    });
+  }
+  return qrLibPromise;
 }
 
-// Tab switching
-document.querySelectorAll('.tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    currentFilter = tab.dataset.member;
-    renderSchedule();
-  });
-});
+function getQRImage(cb) {
+  if (qrImageEl) { cb(qrImageEl); return; }
+  loadQRLib().then(() => {
+    const div = document.getElementById('qr-tmp');
+    div.innerHTML = '';
+    new QRCode(div, { text: SITE_URL, width: 128, height: 128, colorDark: '#1a2a3a', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
+    setTimeout(() => { qrImageEl = div.querySelector('canvas') || div.querySelector('img'); cb(qrImageEl); }, 400);
+  }).catch(() => cb(null));
+}
 
-// Load data
+/* 圖卡背景：上方 bg-top.jpg、下方 bg-bottom.jpg，中間用白色補滿，讓圖卡不論長短都能無縫接合 */
+let _bgTopImg = null, _bgBottomImg = null, _bgImgPromise = null;
+function loadBgImages() {
+  if (_bgImgPromise) return _bgImgPromise;
+  const loadOne = (src) => new Promise(resolve => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => resolve(null);
+    img.src = src;
+  });
+  _bgImgPromise = Promise.all([loadOne('bg-top.jpg'), loadOne('bg-bottom.jpg')]).then(([top, bottom]) => {
+    _bgTopImg = top; _bgBottomImg = bottom;
+  });
+  return _bgImgPromise;
+}
+
+function generateCardOutput() {
+  const inRange = getRangeEvents();
+  if (inRange.length === 0) { alert('此期間暫無行程'); return; }
+  const merged = mergeCoAppearances(inRange);
+  Promise.all([loadBgImages(), new Promise(resolve => getQRImage(resolve))])
+    .then(([, qrEl]) => drawCard(merged, qrEl));
+}
+
+/* 圖卡標題換行：太長的活動名切成兩行，第二行仍放不下才加「…」 */
+function splitTitleLines(mctx, title, maxW) {
+  mctx.font = 'bold 14px sans-serif';
+  if (mctx.measureText(title).width <= maxW) return [title];
+  let line1 = title;
+  while (line1.length > 1 && mctx.measureText(line1).width > maxW) line1 = line1.slice(0, -1);
+  let line2 = title.slice(line1.length);
+  if (mctx.measureText(line2).width > maxW) {
+    while (line2.length > 1 && mctx.measureText(line2 + '…').width > maxW) line2 = line2.slice(0, -1);
+    line2 += '…';
+  }
+  return [line1, line2];
+}
+
+function drawCard(inRange, qrEl) {
+  const canvas = document.getElementById('schedule-canvas');
+  const W = 750, PAD = 44;
+  const BAND_H = 7, HEADER_H = 112, ROW_H = 72, ROW_H2 = 92, FOOTER_H = 84;
+  const maxTitleW = W - PAD*2 - 20;
+  const mctx = document.createElement('canvas').getContext('2d');
+  const titleLines = inRange.map(e => splitTitleLines(mctx, String(e.title ?? ''), maxTitleW));
+  const rowHeights = titleLines.map(lines => lines.length > 1 ? ROW_H2 : ROW_H);
+  const H = BAND_H + HEADER_H + rowHeights.reduce((a, b) => a + b, 0) + FOOTER_H;
+
+  const SCALE = 2;
+  canvas.width = W * SCALE; canvas.height = H * SCALE;
+  canvas.style.width = '100%'; canvas.style.height = 'auto';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(SCALE, SCALE);
+
+  // 底色先鋪白色，讓上下背景圖之間、以及圖片本身的留白處都能無縫接合
+  ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,W,H);
+
+  if (_bgTopImg) {
+    const topH = _bgTopImg.naturalHeight * (W / _bgTopImg.naturalWidth);
+    ctx.drawImage(_bgTopImg, 0, 0, W, topH);
+  }
+  if (_bgBottomImg) {
+    const botH = _bgBottomImg.naturalHeight * (W / _bgBottomImg.naturalWidth);
+    ctx.drawImage(_bgBottomImg, 0, H - botH, W, botH);
+  }
+
+  const Y0 = 0;
+
+  const rangeLabel = getRangeLabel();
+  const actualMembers = [...new Set(inRange.map(e => e._member))];
+  const cpTitle = getCpTitle(actualMembers);
+  const isSingle = actualMembers.length === 1;
+  const actualMemberLabel = actualMembers.map(m => MEMBER_INFO[m]?.name || m).join('・');
+
+  ctx.fillStyle = '#1a2a3a';
+  ctx.font = `bold 30px ${MINCHO}`;
+  ctx.fillText(cpTitle, PAD, Y0+50);
+
+  const subtitleText = isSingle ? rangeLabel : `${rangeLabel}｜${actualMemberLabel}`;
+  ctx.font = '13px sans-serif'; ctx.fillStyle = '#5a7a8a';
+  let sub = subtitleText;
+  while (ctx.measureText(sub).width > W-PAD*2-20 && sub.length > 5) sub = sub.slice(0,-1);
+  if (sub !== subtitleText) sub += '…';
+  ctx.fillText(sub, PAD, Y0+72);
+
+  ctx.strokeStyle = '#c0dcea'; ctx.lineWidth = 1.2;
+  ctx.beginPath(); ctx.moveTo(PAD, Y0+86); ctx.lineTo(W-PAD, Y0+86); ctx.stroke();
+
+  let lastDate = '';
+  let rowY = Y0 + HEADER_H;
+  inRange.forEach((e, i) => {
+    const y = rowY;
+    const rowH = rowHeights[i];
+    const lines = titleLines[i];
+    const members = e._members || [e._member];
+    const info = MEMBER_INFO[members[0]];
+
+    if (i % 2 === 0) {
+      ctx.fillStyle = 'rgba(255,255,255,0.42)';
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(PAD-12, y+2, W-PAD*2+24, rowH-4, 8);
+      else ctx.rect(PAD-12, y+2, W-PAD*2+24, rowH-4);
+      ctx.fill();
+    }
+
+    if (members.length > 1) {
+      const stripeH = rowH - 10;
+      const segH = stripeH / members.length;
+      members.forEach((m, mi) => {
+        ctx.fillStyle = MEMBER_INFO[m].color;
+        ctx.fillRect(PAD-12, y+5+mi*segH, 4, segH);
+      });
+    } else {
+      ctx.fillStyle = info.color;
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(PAD-12, y+5, 4, rowH-10, 2);
+      else ctx.rect(PAD-12, y+5, 4, rowH-10);
+      ctx.fill();
+    }
+
+    const ds = formatDate(e._date);
+    if (ds !== lastDate) {
+      ctx.fillStyle = '#3a5a6a'; ctx.font = 'bold 11px sans-serif';
+      ctx.fillText('▸ '+ds, PAD-4, y+15); lastDate = ds;
+    }
+
+    let chipEndX = PAD;
+    if (!isSingle) {
+      ctx.font = 'bold 10px sans-serif';
+      members.forEach(m => {
+        const mInfo = MEMBER_INFO[m];
+        const chipW = ctx.measureText(mInfo.name).width + 20;
+        if (m === 'KYOKO') {
+          // 京子：單層黑色框
+          ctx.fillStyle = mInfo.light;
+          ctx.beginPath();
+          if (ctx.roundRect) ctx.roundRect(chipEndX, y+21, chipW, 18, 9);
+          else ctx.rect(chipEndX, y+21, chipW, 18);
+          ctx.fill();
+          ctx.strokeStyle = mInfo.color; ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          if (ctx.roundRect) ctx.roundRect(chipEndX, y+21, chipW, 18, 9);
+          else ctx.rect(chipEndX, y+21, chipW, 18);
+          ctx.stroke();
+        } else {
+          ctx.fillStyle = mInfo.light;
+          ctx.beginPath();
+          if (ctx.roundRect) ctx.roundRect(chipEndX, y+21, chipW, 18, 9);
+          else ctx.rect(chipEndX, y+21, chipW, 18);
+          ctx.fill();
+        }
+        ctx.fillStyle = mInfo.color;
+        ctx.fillText(mInfo.name, chipEndX+10, y+33);
+        chipEndX += chipW + 5;
+      });
+    }
+
+    if (e.category) {
+      ctx.font = '10px sans-serif';
+      const catW = ctx.measureText(e.category).width + 14;
+      ctx.fillStyle = '#eef2f6';
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(chipEndX, y+21, catW, 18, 9);
+      else ctx.rect(chipEndX, y+21, catW, 18);
+      ctx.fill();
+      ctx.fillStyle = '#6a8a9a'; ctx.fillText(e.category, chipEndX+7, y+33);
+      chipEndX += catW + 6;
+    }
+
+    const t = formatTime(e.time);
+    if (t) {
+      ctx.fillStyle = '#5a7a8a'; ctx.font = 'bold 11px sans-serif';
+      const tw = ctx.measureText('⏰ '+t).width;
+      ctx.fillText('⏰ '+t, W-PAD-tw-4, y+33);
+    }
+
+    ctx.fillStyle = '#1a2a3a'; ctx.font = 'bold 14px sans-serif';
+    ctx.fillText(lines[0], PAD, y+55);
+    if (lines.length > 1) ctx.fillText(lines[1], PAD, y+75);
+    const lastLine = lines[lines.length - 1];
+    const lastLineY = lines.length > 1 ? y+75 : y+55;
+
+    if (e.note) {
+      const titleW = ctx.measureText(lastLine).width;
+      ctx.fillStyle = '#8aaabb'; ctx.font = '11px sans-serif';
+      let note = `（${e.note}）`;
+      const avail = maxTitleW - titleW - 10;
+      while (note.length > 2 && ctx.measureText(note).width > avail) note = note.slice(0,-1);
+      if (note.length > 2) ctx.fillText(note, PAD+titleW+6, lastLineY);
+    }
+    rowY += rowH;
+  });
+
+  const footerY = rowY;
+  ctx.strokeStyle = '#c0dcea'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(PAD, footerY+12); ctx.lineTo(W-PAD, footerY+12); ctx.stroke();
+
+  const QR_SIZE = 62;
+  try { ctx.drawImage(qrEl, W-PAD-QR_SIZE, footerY+16, QR_SIZE, QR_SIZE); } catch(err){}
+
+  ctx.fillStyle = '#4a7a8a'; ctx.font = 'bold 12px sans-serif';
+  ctx.fillText('掃 QR Code 查看完整行程', PAD, footerY+32);
+  ctx.fillStyle = '#8aaabb'; ctx.font = '10px sans-serif';
+  ctx.fillText(SITE_URL, PAD, footerY+50);
+  ctx.fillStyle = '#aac8d8'; ctx.font = `13px ${MINCHO}`;
+  ctx.fillText('一生一緒日向坂', PAD, footerY+72);
+
+  document.getElementById('card-overlay').classList.add('show');
+}
+
+function downloadCard() {
+  const a = document.createElement('a');
+  a.download = 'hinatazaka-og-schedule.png';
+  a.href = document.getElementById('schedule-canvas').toDataURL('image/png');
+  a.click();
+}
+
+function closeCard(e) {
+  if (e.target === document.getElementById('card-overlay')) document.getElementById('card-overlay').classList.remove('show');
+}
+
 async function init() {
   try {
-    const results = await Promise.all(SHEETS.map(fetchSheet));
-    allEvents = results.flat().map(e => ({
-      ...e,
-      _date: parseDate(e.date),
-    }));
+    // 先載入成員名單（決定有哪些頁籤和要讀哪些分頁），再抓行程
+    const members = await fetchMembers();
+    applyMembers(members);
+    const [memberResults, annData, bdayData] = await Promise.all([
+      Promise.all(SHEETS.map(fetchSheet)),
+      fetchAnniversary(),
+      fetchBirthday()
+    ]);
+    allEvents = memberResults.flat().map(e => ({ ...e, _date: parseDate(e.date) }));
+    anniversaryData = annData;
+    birthdayData = bdayData;
     renderSchedule();
-  } catch (err) {
-    document.getElementById('schedule-container').innerHTML =
-      '<div class="empty">載入失敗，請確認試算表已設為公開</div>';
-    console.error(err);
+  } catch(err) {
+    document.getElementById('schedule-container').innerHTML = '<div class="empty">載入失敗，請確認試算表已設為公開</div>';
   }
 }
-
 init();
+
+/* 離線支援：註冊 Service Worker（sw.js），沒網路時顯示最後一次載入的行程 */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
 </script>
+
+<div class="others-overlay" id="others-overlay" onclick="closeOthers(event)">
+  <div class="others-modal">
+    <div class="others-rainbow"></div>
+    <div class="others-body">
+      <div class="others-header">
+        <span class="others-title">其他成員</span>
+        <button class="others-close" onclick="document.getElementById('others-overlay').classList.remove('show')">✕</button>
+      </div>
+      <p class="others-desc">以下成員的個人官網已提供完整行程資訊，可直接前往查詢：</p>
+
+      <div class="others-gen">
+        <div class="others-gen-title">
+          <span class="others-gen-label">一期生</span>
+          <div class="others-gen-line"></div>
+        </div>
+        <div class="others-member-row">
+          <div class="others-color-bar"><span style="background:#800080"></span><span style="background:#f1c40f"></span></div>
+          <span class="others-member-name">潮紗理菜</span>
+          <a class="others-link" href="https://ushiosarina.com/contents/schedule" target="_blank">官網行程 ↗</a>
+        </div>
+        <div class="others-member-row">
+          <div class="others-color-bar"><span style="background:#e33827"></span><span style="background:#e33827"></span></div>
+          <span class="others-member-name">影山優佳</span>
+          <a class="others-link" href="https://kageyamayuka.com/schedule" target="_blank">官網行程 ↗</a>
+        </div>
+      </div>
+
+      <div class="others-gen">
+        <div class="others-gen-title">
+          <span class="others-gen-label">二期生</span>
+          <div class="others-gen-line"></div>
+        </div>
+        <div class="others-member-row">
+          <div class="others-color-bar"><span style="background:#ff6b9d"></span><span style="background:#7ec8a0"></span></div>
+          <span class="others-member-name">松田好花</span>
+          <a class="others-link" href="https://konokamatsuda-official.com/s/sf2/media/list?ima=5342" target="_blank">官網行程 ↗</a>
+        </div>
+        <div class="others-member-row">
+          <div class="others-color-bar"><span style="background:#800080"></span><span style="background:#800080"></span></div>
+          <span class="others-member-name">富田鈴花</span>
+          <a class="others-link" href="https://suzukatomita-official.bitfan.id/schedules/menu/162142" target="_blank">官網行程 ↗</a>
+        </div>
+      </div>
+
+      <div class="others-footer">
+        如有希望新增的成員，歡迎聯繫
+        <a class="others-ig" href="https://www.instagram.com/tingco_hoshi" target="_blank">@tingco_hoshi</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-lyric">「 一生一緒日向坂 」</span>
+    <div class="footer-countdown">
+      <span>距離日向坂46 10周年還有</span>
+      <span class="footer-countdown-days" id="countdown-days">---</span>
+      <span>天</span>
+    </div>
+    <span class="footer-sub">fan-made schedule · not official</span>
+  </div>
+</footer>
+
+<script>
+(function() {
+  const target = new Date('2029-03-27T00:00:00+09:00');
+  const now = new Date();
+  const diff = Math.ceil((target - now) / (1000 * 60 * 60 * 24));
+  const el = document.getElementById('countdown-days');
+  if (el) el.textContent = diff > 0 ? diff : '🎉';
+})();
+</script>
+
+<style>
+footer { background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%); border-top: 1px solid var(--sky-mid); padding: 20px 24px; text-align: center; }
+.footer-inner { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.footer-lyric { font-family: 'Noto Serif JP', serif; font-size: 15px; color: var(--text-soft); letter-spacing: 0.15em; font-weight: 400; }
+.footer-sub { font-size: 10px; color: #aac4d0; letter-spacing: 0.12em; }
+</style>
 </body>
 </html>

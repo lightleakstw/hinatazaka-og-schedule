@@ -1,0 +1,21 @@
+{
+  "name": "日向坂OG行程",
+  "short_name": "OG行程",
+  "description": "日向坂46 OG成員近期行程整理",
+  "start_url": "/hinatazaka-og-schedule/",
+  "display": "standalone",
+  "background_color": "#dff0f7",
+  "theme_color": "#dff0f7",
+  "icons": [
+    {
+      "src": "https://cdn.hinatazaka46.com/files/14/diary/official/member/poka_0419_2_fhw9fh9ewhfhee0wh90ehw0fewhw8e0he0.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.hinatazaka46.com/files/14/diary/official/member/poka_0419_2_fhw9fh9ewhfhee0wh90ehw0fewhw8e0he0.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
