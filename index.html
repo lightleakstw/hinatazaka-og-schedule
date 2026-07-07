@@ -1046,11 +1046,25 @@ function drawCard(inRange, qrEl) {
   const canvas = document.getElementById('schedule-canvas');
   const W = 750, PAD = 44;
   const BAND_H = 7, HEADER_H = 112, ROW_H = 72, ROW_H2 = 92, FOOTER_H = 84;
+  const DATE_H = 30, CARD_PAD_TOP = 18, CARD_PAD_BOTTOM = 14, GROUP_GAP = 14;
   const maxTitleW = W - PAD*2 - 20;
   const mctx = document.createElement('canvas').getContext('2d');
   const titleLines = inRange.map(e => splitTitleLines(mctx, String(e.title ?? ''), maxTitleW));
   const rowHeights = titleLines.map(lines => lines.length > 1 ? ROW_H2 : ROW_H);
-  const H = BAND_H + HEADER_H + rowHeights.reduce((a, b) => a + b, 0) + FOOTER_H;
+
+  // 依日期分組，讓同一天的行程合併顯示在同一張卡片內（日期字放大放粗）
+  const groups = [];
+  inRange.forEach((e, i) => {
+    const ds = formatDate(e._date);
+    let g = groups[groups.length - 1];
+    if (!g || g.date !== ds) { g = { date: ds, items: [] }; groups.push(g); }
+    g.items.push(i);
+  });
+  const groupHeights = groups.map(g => {
+    const itemsH = g.items.reduce((sum, i) => sum + rowHeights[i], 0);
+    return DATE_H + CARD_PAD_TOP + CARD_PAD_BOTTOM + itemsH;
+  });
+  const H = BAND_H + HEADER_H + groupHeights.reduce((a, b) => a + b, 0) + GROUP_GAP * (groups.length - 1) + FOOTER_H;
 
   const SCALE = 2;
   canvas.width = W * SCALE; canvas.height = H * SCALE;
@@ -1111,112 +1125,124 @@ function drawCard(inRange, qrEl) {
   if (sub !== subtitleText) sub += '…';
   ctx.fillText(sub, PAD, Y0+72);
 
-  let lastDate = '';
-  let rowY = Y0 + HEADER_H;
-  inRange.forEach((e, i) => {
-    const y = rowY;
-    const rowH = rowHeights[i];
-    const lines = titleLines[i];
-    const members = e._members || [e._member];
-    const info = MEMBER_INFO[members[0]];
+  let groupY = Y0 + HEADER_H;
+  groups.forEach((g, gi) => {
+    const gh = groupHeights[gi];
 
-    if (i % 2 === 0) {
-      ctx.fillStyle = 'rgba(255,255,255,0.42)';
-      ctx.beginPath();
-      if (ctx.roundRect) ctx.roundRect(PAD-12, y+2, W-PAD*2+24, rowH-4, 8);
-      else ctx.rect(PAD-12, y+2, W-PAD*2+24, rowH-4);
-      ctx.fill();
-    }
+    // 整天的卡片背景（同一天的行程都合併在這個白色圓角卡片裡）
+    ctx.fillStyle = 'rgba(255,255,255,0.6)';
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(PAD-12, groupY, W-PAD*2+24, gh, 12);
+    else ctx.rect(PAD-12, groupY, W-PAD*2+24, gh);
+    ctx.fill();
 
-    if (members.length > 1) {
-      const stripeH = rowH - 10;
-      const segH = stripeH / members.length;
-      members.forEach((m, mi) => {
-        ctx.fillStyle = MEMBER_INFO[m].color;
-        ctx.fillRect(PAD-12, y+5+mi*segH, 4, segH);
-      });
-    } else {
-      ctx.fillStyle = info.color;
-      ctx.beginPath();
-      if (ctx.roundRect) ctx.roundRect(PAD-12, y+5, 4, rowH-10, 2);
-      else ctx.rect(PAD-12, y+5, 4, rowH-10);
-      ctx.fill();
-    }
+    // 日期文字：放大放粗，更明顯
+    ctx.fillStyle = '#1a2a3a'; ctx.font = 'bold 17px sans-serif';
+    ctx.fillText('▸ ' + g.date, PAD, groupY + CARD_PAD_TOP + 10);
 
-    const ds = formatDate(e._date);
-    if (ds !== lastDate) {
-      ctx.fillStyle = '#3a5a6a'; ctx.font = 'bold 11px sans-serif';
-      ctx.fillText('▸ '+ds, PAD-4, y+15); lastDate = ds;
-    }
+    let itemY = groupY + CARD_PAD_TOP + DATE_H;
+    g.items.forEach((i, gidx) => {
+      const e = inRange[i];
+      const y = itemY;
+      const rowH = rowHeights[i];
+      const lines = titleLines[i];
+      const members = e._members || [e._member];
+      const info = MEMBER_INFO[members[0]];
 
-    let chipEndX = PAD;
-    if (!isSingle) {
-      ctx.font = 'bold 10px sans-serif';
-      members.forEach(m => {
-        const mInfo = MEMBER_INFO[m];
-        const chipW = ctx.measureText(mInfo.name).width + 20;
-        if (m === 'KYOKO') {
-          // 京子：單層黑色框
-          ctx.fillStyle = mInfo.light;
-          ctx.beginPath();
-          if (ctx.roundRect) ctx.roundRect(chipEndX, y+21, chipW, 18, 9);
-          else ctx.rect(chipEndX, y+21, chipW, 18);
-          ctx.fill();
-          ctx.strokeStyle = mInfo.color; ctx.lineWidth = 1.5;
-          ctx.beginPath();
-          if (ctx.roundRect) ctx.roundRect(chipEndX, y+21, chipW, 18, 9);
-          else ctx.rect(chipEndX, y+21, chipW, 18);
-          ctx.stroke();
-        } else {
-          ctx.fillStyle = mInfo.light;
-          ctx.beginPath();
-          if (ctx.roundRect) ctx.roundRect(chipEndX, y+21, chipW, 18, 9);
-          else ctx.rect(chipEndX, y+21, chipW, 18);
-          ctx.fill();
-        }
-        ctx.fillStyle = mInfo.color;
-        ctx.fillText(mInfo.name, chipEndX+10, y+33);
-        chipEndX += chipW + 5;
-      });
-    }
+      // 同一天內第2筆(含)以後的行程上方加一條淺色分隔線
+      if (gidx > 0) {
+        ctx.strokeStyle = 'rgba(192,220,234,0.7)'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W-PAD, y); ctx.stroke();
+      }
 
-    if (e.category) {
-      ctx.font = '10px sans-serif';
-      const catW = ctx.measureText(e.category).width + 14;
-      ctx.fillStyle = '#eef2f6';
-      ctx.beginPath();
-      if (ctx.roundRect) ctx.roundRect(chipEndX, y+21, catW, 18, 9);
-      else ctx.rect(chipEndX, y+21, catW, 18);
-      ctx.fill();
-      ctx.fillStyle = '#6a8a9a'; ctx.fillText(e.category, chipEndX+7, y+33);
-      chipEndX += catW + 6;
-    }
+      // 成員色條：同一天不同行程仍各自依成員上色，彼此獨立區分
+      if (members.length > 1) {
+        const stripeH = rowH - 10;
+        const segH = stripeH / members.length;
+        members.forEach((m, mi) => {
+          ctx.fillStyle = MEMBER_INFO[m].color;
+          ctx.fillRect(PAD-12, y+5+mi*segH, 4, segH);
+        });
+      } else {
+        ctx.fillStyle = info.color;
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(PAD-12, y+5, 4, rowH-10, 2);
+        else ctx.rect(PAD-12, y+5, 4, rowH-10);
+        ctx.fill();
+      }
 
-    const t = formatTime(e.time);
-    if (t) {
-      ctx.fillStyle = '#5a7a8a'; ctx.font = 'bold 11px sans-serif';
-      const tw = ctx.measureText('⏰ '+t).width;
-      ctx.fillText('⏰ '+t, W-PAD-tw-4, y+33);
-    }
+      let chipEndX = PAD;
+      if (!isSingle) {
+        ctx.font = 'bold 10px sans-serif';
+        members.forEach(m => {
+          const mInfo = MEMBER_INFO[m];
+          const chipW = ctx.measureText(mInfo.name).width + 20;
+          if (m === 'KYOKO') {
+            // 京子：單層黑色框
+            ctx.fillStyle = mInfo.light;
+            ctx.beginPath();
+            if (ctx.roundRect) ctx.roundRect(chipEndX, y+9, chipW, 18, 9);
+            else ctx.rect(chipEndX, y+9, chipW, 18);
+            ctx.fill();
+            ctx.strokeStyle = mInfo.color; ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            if (ctx.roundRect) ctx.roundRect(chipEndX, y+9, chipW, 18, 9);
+            else ctx.rect(chipEndX, y+9, chipW, 18);
+            ctx.stroke();
+          } else {
+            ctx.fillStyle = mInfo.light;
+            ctx.beginPath();
+            if (ctx.roundRect) ctx.roundRect(chipEndX, y+9, chipW, 18, 9);
+            else ctx.rect(chipEndX, y+9, chipW, 18);
+            ctx.fill();
+          }
+          ctx.fillStyle = mInfo.color;
+          ctx.fillText(mInfo.name, chipEndX+10, y+21);
+          chipEndX += chipW + 5;
+        });
+      }
 
-    ctx.fillStyle = '#1a2a3a'; ctx.font = 'bold 14px sans-serif';
-    ctx.fillText(lines[0], PAD, y+55);
-    if (lines.length > 1) ctx.fillText(lines[1], PAD, y+75);
-    const lastLine = lines[lines.length - 1];
-    const lastLineY = lines.length > 1 ? y+75 : y+55;
+      if (e.category) {
+        ctx.font = '10px sans-serif';
+        const catW = ctx.measureText(e.category).width + 14;
+        ctx.fillStyle = '#eef2f6';
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(chipEndX, y+9, catW, 18, 9);
+        else ctx.rect(chipEndX, y+9, catW, 18);
+        ctx.fill();
+        ctx.fillStyle = '#6a8a9a'; ctx.fillText(e.category, chipEndX+7, y+21);
+        chipEndX += catW + 6;
+      }
 
-    if (e.note) {
-      const titleW = ctx.measureText(lastLine).width;
-      ctx.fillStyle = '#8aaabb'; ctx.font = '11px sans-serif';
-      let note = `（${e.note}）`;
-      const avail = maxTitleW - titleW - 10;
-      while (note.length > 2 && ctx.measureText(note).width > avail) note = note.slice(0,-1);
-      if (note.length > 2) ctx.fillText(note, PAD+titleW+6, lastLineY);
-    }
-    rowY += rowH;
+      const t = formatTime(e.time);
+      if (t) {
+        ctx.fillStyle = '#5a7a8a'; ctx.font = 'bold 11px sans-serif';
+        const tw = ctx.measureText('⏰ '+t).width;
+        ctx.fillText('⏰ '+t, W-PAD-tw-4, y+21);
+      }
+
+      ctx.fillStyle = '#1a2a3a'; ctx.font = 'bold 14px sans-serif';
+      ctx.fillText(lines[0], PAD, y+43);
+      if (lines.length > 1) ctx.fillText(lines[1], PAD, y+63);
+      const lastLine = lines[lines.length - 1];
+      const lastLineY = lines.length > 1 ? y+63 : y+43;
+
+      if (e.note) {
+        const titleW = ctx.measureText(lastLine).width;
+        ctx.fillStyle = '#8aaabb'; ctx.font = '11px sans-serif';
+        let note = `（${e.note}）`;
+        const avail = maxTitleW - titleW - 10;
+        while (note.length > 2 && ctx.measureText(note).width > avail) note = note.slice(0,-1);
+        if (note.length > 2) ctx.fillText(note, PAD+titleW+6, lastLineY);
+      }
+
+      itemY += rowH;
+    });
+
+    groupY += gh + GROUP_GAP;
   });
 
-  const footerY = rowY;
+  const footerY = groupY - GROUP_GAP;
   ctx.strokeStyle = '#c0dcea'; ctx.lineWidth = 1;
   ctx.beginPath(); ctx.moveTo(PAD, footerY+12); ctx.lineTo(W-PAD, footerY+12); ctx.stroke();
 
